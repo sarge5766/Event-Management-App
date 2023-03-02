@@ -41,10 +41,11 @@ referredby
 
 
 4) BloodDonations
-donerID
-boold donated or not 
-donation date
-donation location
+DonationId
+DonerID // this probably needs to be ContactId???
+Donated 
+DonationDate
+DonationLocation
 
 
 5) Events
@@ -57,3 +58,10 @@ isavvtive
 EventID
 ContactID
 
+Controllers required
+
+Users
+Roles
+Contacts
+BloodDonations
+Events

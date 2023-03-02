@@ -18,7 +18,7 @@ GO
 -- Create date: <Create Date,,>
 -- Description:	<Description,,>
 -- =============================================
-CREATE PROCEDURE dbo.Contacts_Update
+create PROCEDURE dbo.Contacts_Update
 	-- Add the parameters for the stored procedure here
 	@ContactId int,
 	@FirstName nvarchar(25)
@@ -27,6 +27,7 @@ CREATE PROCEDURE dbo.Contacts_Update
 	,@MobileNumber nvarchar(20)
 	,@Address nvarchar(35)
 	,@City nvarchar(25)
+	,@State nvarchar(2)
 	,@Zipcode nvarchar(10)
 	,@BloodType int
 	,@ReferredBy int
@@ -44,8 +45,9 @@ FirstName = @FirstName,
 LastName =  @LastName,
 Email = @Email,
 MobileNumber = @MobileNumber,
-Address = @Address,
+[Address] = @Address,
 City = @City,
+[State] = @State,
 Zipcode = @Zipcode,
 BloodType = @BloodType,
 ReferredBy = @ReferredBy

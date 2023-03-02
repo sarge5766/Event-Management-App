@@ -9,6 +9,10 @@ namespace EventManagement.WebAPI.Controllers
 {
     public class UsersController : ApiController
     {
+        public IHttpActionResult CreateUser() {
+            return Ok();
+        }
+
         public IHttpActionResult Get() {
             return Ok("USERS");
         }

@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventManagement.Web", "Even
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventManagement.WebAPI", "..\EventManagement.WebAPI\EventManagement.WebAPI.csproj", "{C3F99FA1-B0C7-4E31-994A-E684620DCDBE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventManagement.Domain", "..\EventManagement.Domain\EventManagement.Domain.csproj", "{4EDFABCC-C768-4BD9-9DEA-1EBEC4DCE642}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{C3F99FA1-B0C7-4E31-994A-E684620DCDBE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C3F99FA1-B0C7-4E31-994A-E684620DCDBE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C3F99FA1-B0C7-4E31-994A-E684620DCDBE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4EDFABCC-C768-4BD9-9DEA-1EBEC4DCE642}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4EDFABCC-C768-4BD9-9DEA-1EBEC4DCE642}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4EDFABCC-C768-4BD9-9DEA-1EBEC4DCE642}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4EDFABCC-C768-4BD9-9DEA-1EBEC4DCE642}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
