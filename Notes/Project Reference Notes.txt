@@ -1,0 +1,59 @@
+Bhushan  to  Everyone 11:22 AM
+Event Management
+1) Users
+userid
+username
+password
+roleid
+
+STORED PROCEDURES
+Users_Insert
+	// put parameters here...
+
+Users_Update
+	// put parameters here...
+
+Users_Delete
+	// put parameters here...
+
+Users_GetById
+// put parameters here...
+
+Users_GetAll
+
+2) Roles
+id
+role
+
+
+3) Contacts
+ContactId
+mobile number
+firstname
+lastname
+email
+blood Type 
+address
+city
+state
+zipcode
+referredby 
+
+
+4) BloodDonations
+donerID
+boold donated or not 
+donation date
+donation location
+
+
+5) Events
+event id
+name
+eventdate
+isavvtive
+
+6) EventMapper 
+EventID
+ContactID
+
