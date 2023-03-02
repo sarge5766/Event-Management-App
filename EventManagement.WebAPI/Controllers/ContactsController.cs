@@ -43,7 +43,7 @@ namespace EventManagement.WebAPI.Controllers {
 
         [HttpDelete]
         [Route("api/Contacts/Delete/{id}")]
-        public IHttpActionResult Put(int id) {
+        public IHttpActionResult Delete(int id) {
             using (conn) {
                 conn.Open();
                 using (SqlCommand command = conn.CreateCommand()) {

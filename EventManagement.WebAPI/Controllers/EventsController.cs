@@ -5,22 +5,24 @@ using System.Data.SqlClient;
 using System.Web.Http;
 
 namespace EventManagement.WebAPI.Controllers {
-    public class RolesController : ApiController {
+    public class EventsController : ApiController {
         SqlConnection conn;
 
-        public RolesController() {
+        public EventsController() {
             conn = DBHelper.Conn();
         }
 
         [HttpPost]
-        [Route("api/Roles/Create")]
-        public IHttpActionResult Create(Role role) {
+        [Route("api/Events/Create")]
+        public IHttpActionResult Create(Event e) {
             using (conn) {
                 conn.Open();
                 using (SqlCommand command = conn.CreateCommand()) {
-                    command.CommandText = "[dbo].[Roles_Insert]";
+                    command.CommandText = "[dbo].[Events_Insert]";
                     command.CommandType = System.Data.CommandType.StoredProcedure;
-                    command.Parameters.AddWithValue("@RoleName", role.RoleName);
+                    command.Parameters.AddWithValue("@Name", e.Name);
+                    command.Parameters.AddWithValue("@EventDate", e.EventDate);
+                    command.Parameters.AddWithValue("@IsActive", e.IsActive);
 
                     command.ExecuteNonQuery();
                 }
@@ -30,15 +32,14 @@ namespace EventManagement.WebAPI.Controllers {
         }
 
         [HttpDelete]
-        [Route("api/Roles/Delete/{id}")]
+        [Route("api/Events/Delete/{id}")]
         public IHttpActionResult Delete(int id) {
             using (conn) {
                 conn.Open();
                 using (SqlCommand command = conn.CreateCommand()) {
-                    command.CommandText = "[dbo].[Roles_Delete]";
+                    command.CommandText = "[dbo].[Events_Delete]";
                     command.CommandType = System.Data.CommandType.StoredProcedure;
-                    command.Parameters.AddWithValue("@RoleId", id);
-
+                    command.Parameters.AddWithValue("@EventId", id);
                     command.ExecuteNonQuery();
                 }
             }
@@ -47,64 +48,68 @@ namespace EventManagement.WebAPI.Controllers {
         }
 
         [HttpGet]
-        [Route("api/Roles/GetById/{id}")]
+        [Route("api/Events/GetById/{id}")]
         public IHttpActionResult GetById(int id) {
-            Role role = new Role();
+            Event e = new Event();
 
             using (conn) {
                 conn.Open();
                 using (SqlCommand command = conn.CreateCommand()) {
-                    command.CommandText = "[dbo].[Roles_GetById]";
+                    command.CommandText = "[dbo].[Events_GetById]";
                     command.CommandType = System.Data.CommandType.StoredProcedure;
-                    command.Parameters.AddWithValue("@RoleId", id);
+                    command.Parameters.AddWithValue("@EventId", id);
 
                     using (SqlDataReader reader = command.ExecuteReader()) {
                         while (reader.Read()) {
-                            role.RoleId = Convert.ToInt32(reader["RoleId"]);
-                            role.RoleName = reader["RoleName"].ToString();
+                            e.EventId = Convert.ToInt32(reader["EventId"]);
+                            e.Name = reader["Name"].ToString();
+                            e.EventDate = Convert.ToDateTime(reader["EventDate"]);
                         }
                     }
                 }
-            }
 
-            return Ok(role);
+                return Ok(e);
+            }
         }
 
         [HttpGet]
-        [Route("api/Roles/GetAll")]
+        [Route("api/Events/GetAll")]
         public IHttpActionResult GetAll() {
-            List<Role> roles = new List<Role>();
+            List<Event> events = new List<Event>();
 
             using (conn) {
                 conn.Open();
                 using (SqlCommand command = conn.CreateCommand()) {
-                    command.CommandText = "[dbo].[Roles_GetAll]";
+                    command.CommandText = "[dbo].[Events_GetAll]";
                     command.CommandType = System.Data.CommandType.StoredProcedure;
 
                     using (SqlDataReader reader = command.ExecuteReader()) {
                         while (reader.Read()) {
-                            roles.Add(new Role {
-                                RoleId = Convert.ToInt32(reader["RoleId"]),
-                                RoleName = reader["RoleName"].ToString()
+                            events.Add(new Event {
+                                EventId = Convert.ToInt32(reader["EventId"]),
+                                Name = reader["Name"].ToString(),
+                                EventDate = Convert.ToDateTime(reader["EventDate"])
                             });
                         }
                     }
                 }
             }
 
-            return Ok(roles);
+            return Ok(events);
         }
 
         [HttpPut]
-        [Route("api/Roles/Update")]
-        public IHttpActionResult Put(Role role) {
+        [Route("api/Events/Update")]
+        public IHttpActionResult Put(Event e) {
             using (conn) {
                 conn.Open();
                 using (SqlCommand command = conn.CreateCommand()) {
-                    command.CommandText = "[dbo].[Roles_Update]";
+                    command.CommandText = "[dbo].[Events_Update]";
                     command.CommandType = System.Data.CommandType.StoredProcedure;
-                    command.Parameters.AddWithValue("@RoleId", role.RoleId);
-                    command.Parameters.AddWithValue("@RoleName", role.RoleName);
+                    command.Parameters.AddWithValue("@EventId", e.EventId);
+                    command.Parameters.AddWithValue("@Name", e.Name);
+                    command.Parameters.AddWithValue("@EventDate", e.EventDate);
+                    command.Parameters.AddWithValue("@IsActive", e.IsActive);
 
                     command.ExecuteNonQuery();
                 }

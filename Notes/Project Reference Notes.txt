@@ -49,10 +49,10 @@ DonationLocation
 
 
 5) Events
-event id
-name
-eventdate
-isavvtive
+EventID
+Name
+EventDate
+IsActive
 
 6) EventMapper 
 EventID
