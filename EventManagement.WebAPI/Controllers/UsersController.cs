@@ -12,5 +12,9 @@ namespace EventManagement.WebAPI.Controllers
         public IHttpActionResult Get() {
             return Ok("USERS");
         }
+
+        public IHttpActionResult GetById(int id) {
+            return Ok("Get user by id");
+        }
     }
 }
