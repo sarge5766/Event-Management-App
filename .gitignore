@@ -363,3 +363,9 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/EventManagement.WebAPI/Web.Release.config
+/EventManagement.WebAPI/Web.Debug.config
+/EventManagement.WebAPI/Web.config
+/EventManagement.App/EventManagement.Web/Web.Release.config
+/EventManagement.App/EventManagement.Web/Web.Debug.config
+/EventManagement.App/EventManagement.Web/Web.config
