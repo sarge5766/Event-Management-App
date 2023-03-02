@@ -11,6 +11,8 @@
 *.sln.docstates
 
  EventManagement.WebAPI/Web.config
+ EventManagement.WebAPI/Web.Debug.config
+ EventManagement.WebAPI/Web.Release.config
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
