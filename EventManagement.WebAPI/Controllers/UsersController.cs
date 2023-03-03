@@ -120,5 +120,33 @@ namespace EventManagement.WebAPI.Controllers {
 
             return Ok();
         }
+
+
+        [HttpPost]
+        [Route("api/Users/Login")]
+        public IHttpActionResult Login(User user) {
+            var currentUser = new User();
+
+            using (conn) {
+                conn.Open();
+                using (SqlCommand command = conn.CreateCommand()) {
+                    command.CommandText = "[dbo].[Users_Login]";
+                    command.CommandType = System.Data.CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@Username", user.Username);
+                    command.Parameters.AddWithValue("@Password", user.Password);
+
+                    using(SqlDataReader reader = command.ExecuteReader()) {
+                        while (reader.Read()) {
+                            currentUser.UserId = Convert.ToInt32(reader["UserId"]);
+                            currentUser.Username = reader["Username"].ToString();
+                            currentUser.RoleId = Convert.ToInt32(reader["RoleID"]);
+                            currentUser.RoleName = reader["RoleName"].ToString();
+                        }
+                    }
+                }
+            }
+
+            return Ok(currentUser);
+        }
     }
 }

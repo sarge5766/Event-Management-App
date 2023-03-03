@@ -1,0 +1,22 @@
+﻿@model EventManagement.Domain.User
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Login</h2>
+
+@using (Html.BeginForm("Login", "Home", FormMethod.Post)) {
+<table>
+    <tr>
+        <td>@Html.TextBoxFor(u => u.Username, new { placeholder = "Enter Username" }) </td>
+    </tr>
+    <tr>
+        <td>@Html.PasswordFor(u => u.Password, new { placeholder = "Enter Password" }) </td>
+    </tr>
+    <tr>
+        <td><input type="submit" name="Log in" /></td>
+    </tr>
+</table>
+
+}
