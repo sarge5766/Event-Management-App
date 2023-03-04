@@ -1,0 +1,22 @@
+﻿@model EventManagement.Domain.Event
+@{
+    ViewBag.Title = "UpdateEvent";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Update Event</h2>
+
+@using (Html.BeginForm("Update", "Events", FormMethod.Post)) {
+    @Html.HiddenFor(e => e.EventId)
+    <table>
+        <tr>
+            <td>@Html.TextBoxFor(e => e.Name, new { placeholder = "Enter Event Name" })</td>
+        </tr>
+        <tr>
+            <td>@Html.EditorFor(e => e.EventDate, "{0:MM/dd/yyyy}", new { type = "date" })</td>
+        </tr>
+        <tr>
+            <td><input type="submit" value="Save" /></td>
+        </tr>
+    </table>
+}

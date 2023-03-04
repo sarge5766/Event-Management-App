@@ -12,18 +12,10 @@ namespace EventManagement.Web.Controllers
         // GET: Contacts
         public ActionResult Index()
         {
-            if (Session["Username"] == null) {
-                return RedirectToAction("Login");
-            }
-
             return View();
         }
 
         public ActionResult Add() {
-            if (Session["Username"] == null) {
-                return RedirectToAction("Login");
-            }
-
             var enumData = from BloodType b in Enum.GetValues(typeof(BloodType))
                            select new {
                                ID = (int)b,

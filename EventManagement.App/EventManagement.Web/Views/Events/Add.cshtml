@@ -6,13 +6,15 @@
 
 <h2>Add Event</h2>
 
-@using (Html.BeginForm("Add", "Events", FormMethod.Post)) {
+@using (Html.BeginForm("AddEvent", "Events", FormMethod.Post)) {
 <table>
     <tr>
         <td>@Html.TextBoxFor(e => e.Name, new { placeholder = "Enter Event Name" })</td>
     </tr>
     <tr>
-        <td><input asp-for="EventDate" type="date" class="form-control" /></td>
+        <td>@Html.TextBoxFor(e => e.EventDate, new { type = "date" })
+        
+        
     </tr>
     <tr>
         <td><input type="submit" value="Save" /></td>
