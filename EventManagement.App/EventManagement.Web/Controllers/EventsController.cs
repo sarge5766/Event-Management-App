@@ -5,8 +5,8 @@ using System.Collections.Generic;
 using System.Web.Mvc;
 
 namespace EventManagement.Web.Controllers {
-    public class EventsController : Controller {
-        private string _baseUrl = @"https://localhost:44331/";
+    public class EventsController : BaseController {
+       // private string _baseUrl = @"https://localhost:44331/";
 
         // GET: Events
         public ActionResult Index() {

@@ -1,8 +1,42 @@
-﻿
+﻿@model IEnumerable<EventManagement.Domain.Contact>
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    int counter = 0;
 }
 
 <h2>Contacts</h2>
 <a href="/Contacts/Add">Add Contact</a>
+
+<table>
+    @foreach (var contact in Model) {
+        if (counter % 2 == 0) {
+            <tr class="odd">
+                <td>@contact.FirstName</td>
+                <td>@contact.LastName</td>
+                <td>@contact.Email</td>
+                <td>@contact.MobileNumber</td>
+                <td>@contact.Address</td>
+                <td>@contact.City, @contact.State @contact.Zipcode</td>
+                <td>
+                    Blood Type: @contact.BloodType
+                </td>
+                <td><a href="/Contacts/UpdateContact?id=@contact.ContactId">Edit</a> | <a href="/Contacts/Delete?id=@contact.ContactId" onclick="return confirm('Are you sure you want to delete this contact?')">Delete</a></td>
+            </tr>
+        } else {
+            <tr>
+                <td>@contact.FirstName</td>
+                <td>@contact.LastName</td>
+                <td>@contact.Email</td>
+                <td>@contact.MobileNumber</td>
+                <td>@contact.Address</td>
+                <td>@contact.City, @contact.State @contact.Zipcode</td>
+                <td>
+                    Blood Type: @contact.BloodType
+                </td>
+            </tr>
+        }
+
+        counter++;
+    }
+</table>

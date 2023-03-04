@@ -43,3 +43,17 @@ a {
 main {
     padding: 3em;
 }
+
+table {
+    border-spacing: 0;
+    border-collapse: separate;
+    margin-top: 1em;
+}
+
+table tr td {
+    padding: 1em;
+}
+
+.odd {
+    background-color: grey;
+}

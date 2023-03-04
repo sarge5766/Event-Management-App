@@ -1,12 +1,14 @@
 ﻿@model EventManagement.Domain.Contact
 @using EventManagement.Domain
 @{
-    ViewBag.Title = "Add";
+    ViewBag.Title = "UpdateContact";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Add Contact</h2>
-@using (Html.BeginForm("AddContact", "Contacts", FormMethod.Post)) {
+<h2>Update Contact</h2>
+
+@using (Html.BeginForm("Update", "Contacts", FormMethod.Post)) {
+    @Html.HiddenFor(c => c.ContactId)
     <table>
         <tr>
             <td>@Html.TextBoxFor(c => c.FirstName, new { placeholder = "Enter First Name" }) </td>
@@ -44,7 +46,7 @@
             </td>
         </tr>
         <tr>
-            <td><input type="submit" value="Add" /></td>
+            <td><input type="submit" value="Save" /></td>
         </tr>
     </table>
 }
