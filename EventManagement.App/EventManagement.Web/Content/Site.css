@@ -327,6 +327,15 @@ header div:nth-child(1) {
     text-transform: uppercase;
 }
 
+    .card.contact-details {
+        margin-right: 2em;
+    }
+
+    .card.contact-details, .card.events-signed-up-for {
+        min-height: 200px;
+        width: 300px;
+    }
+
 main h2 {
     padding-bottom: 1em;
     text-transform: uppercase;

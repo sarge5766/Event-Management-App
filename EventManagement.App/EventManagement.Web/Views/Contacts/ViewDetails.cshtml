@@ -1,0 +1,27 @@
+﻿@model dynamic
+@{
+    ViewBag.Title = "ViewDetails";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="card contact-details">
+        <div class="title">Contact Details</div>
+        @Model.Contact.FirstName @Model.Contact.LastName<br />
+        @Model.Contact.MobileNumber<br />
+        @Model.Contact.Email<br />  
+        @Model.Contact.Address<br />
+        @Model.Contact.City, @Model.Contact.State @Model.Contact.Zipcode<br />
+        BloodType: @Model.Contact.BloodType
+    </div>
+    
+    <div class="card events-signed-up-for">
+        <div class="title">Events Signed Up For</div>
+        sign up for event<br />
+        @foreach (var item in Model.Events) {
+            @item.Name<br />
+        }
+    </div>
+</div>
+
+
