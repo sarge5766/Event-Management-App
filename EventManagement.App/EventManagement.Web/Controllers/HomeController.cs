@@ -27,6 +27,10 @@ namespace EventManagement.Web.Controllers {
 
         [HttpPost]
         public ActionResult Login(User user) {
+            if (!ModelState.IsValid) {
+                return View();
+            }
+
             var baseUrl = @"https://localhost:44331/";
             var serviceUrl = @"api/Users/Login";
 

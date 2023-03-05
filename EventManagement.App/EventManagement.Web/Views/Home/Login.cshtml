@@ -4,19 +4,20 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Login</h2>
 
-@using (Html.BeginForm("Login", "Home", FormMethod.Post)) {
-<table>
-    <tr>
-        <td>@Html.TextBoxFor(u => u.Username, new { placeholder = "Enter Username" }) </td>
-    </tr>
-    <tr>
-        <td>@Html.PasswordFor(u => u.Password, new { placeholder = "Enter Password" }) </td>
-    </tr>
-    <tr>
-        <td><input type="submit" name="Log in" /></td>
-    </tr>
-</table>
-
-}
+<div class="container">
+    @using (Html.BeginForm("Login", "Home", FormMethod.Post)) {
+        <div class="event-form">
+            <div class="title">Login</div>
+            <div class="text-box-wrapper">
+                @Html.ValidationMessageFor(u => u.UserId)
+                @Html.TextBoxFor(u => u.Username, new { placeholder = "Enter Username" })
+                @Html.ValidationMessageFor(u => u.Password)
+                @Html.PasswordFor(u => u.Password, new { placeholder = "Enter Password" })
+            </div>
+            <div class="btn-wrapper">
+                <input type="submit" name="Log in" />
+            </div>
+        </div>
+    }
+</div>

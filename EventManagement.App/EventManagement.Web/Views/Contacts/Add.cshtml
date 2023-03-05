@@ -5,46 +5,52 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Add Contact</h2>
-@using (Html.BeginForm("AddContact", "Contacts", FormMethod.Post)) {
-    <table>
-        <tr>
-            <td>@Html.TextBoxFor(c => c.FirstName, new { placeholder = "Enter First Name" }) </td>
-        </tr>
-        <tr>
-            <td>@Html.TextBoxFor(c => c.LastName, new { placeholder = "Enter Last Name" }) </td>
-        </tr>
-        <tr>
-            <td>@Html.TextBoxFor(c => c.Email, new { placeholder = "Enter Email" }) </td>
-        </tr>
-        <tr>
-            <td>@Html.TextBoxFor(c => c.MobileNumber, new { placeholder = "Enter Mobile Number" }) </td>
-        </tr>
-        <tr>
-            <td>@Html.TextBoxFor(c => c.Address, new { placeholder = "Enter Address" }) </td>
-        </tr>
-        <tr>
-            <td>@Html.TextBoxFor(c => c.City, new { placeholder = "Enter City" }) </td>
-        </tr>
-        <tr>
-            <td>@Html.TextBoxFor(c => c.State, new { placeholder = "Enter State" }) </td>
-        </tr>
-        <tr>
-            <td>@Html.TextBoxFor(c => c.Zipcode, new { placeholder = "Enter Zipcode" }) </td>
-        </tr>
-        <tr>
-            <td>@Html.TextBoxFor(c => c.ReferredBy, new { placeholder = "Enter Reference" }) </td>
-        </tr>
-        <tr>
-            <td>
+<div class="container">
+    @using (Html.BeginForm("AddContact", "Contacts", FormMethod.Post)) {
+        <div class="control contact-form">
+            <div class="title">Add Contact</div>
+            <div class="text-box-wrapper">
+
+                @Html.TextBoxFor(c => c.FirstName, new { placeholder = "Enter First Name" })
+
+
+                @Html.TextBoxFor(c => c.LastName, new { placeholder = "Enter Last Name" })
+
+
+                @Html.TextBoxFor(c => c.Email, new { placeholder = "Enter Email" })
+
+
+                @Html.TextBoxFor(c => c.MobileNumber, new { placeholder = "Enter Mobile Number" })
+
+
+                @Html.TextBoxFor(c => c.Address, new { placeholder = "Enter Address" })
+
+
+                @Html.TextBoxFor(c => c.City, new { placeholder = "Enter City" })
+
+
+                @Html.TextBoxFor(c => c.State, new { placeholder = "Enter State" })
+
+
+                @Html.TextBoxFor(c => c.Zipcode, new { placeholder = "Enter Zipcode" })
+
+
+                @Html.TextBoxFor(c => c.ReferredBy, new { placeholder = "Enter Reference" })
+
+
+
                 @Html.DropDownList("BloodType",
                     EnumHelper.GetSelectList(typeof(BloodType)),
                     "Select Blood Type",
                     new { @class = "form-control" })
-            </td>
-        </tr>
-        <tr>
-            <td><input type="submit" value="Add" /></td>
-        </tr>
-    </table>
-}
+
+            </div>
+            <div class="btn-wrapper">
+
+                <input type="submit" value="Add" />
+                @Html.ActionLink("Cancel", "Index", new { controller = "Contacts" }, new { @class = "btn" })
+            </div>
+        </div>
+    }
+</div>
+

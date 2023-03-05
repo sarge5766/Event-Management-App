@@ -14,10 +14,10 @@ namespace EventManagement.Web {
         }
 
         protected void Session_Start(Object sender, EventArgs e) {
-            //if (Session["Username"] == null) {
-            //    var urlHelper = new UrlHelper(HttpContext.Current.Request.RequestContext);
-            //    Response.Redirect(urlHelper.Action("Login", "Home"));
-            //}
+            if (Session["Username"] == null) {
+                var urlHelper = new UrlHelper(HttpContext.Current.Request.RequestContext);
+                Response.Redirect(urlHelper.Action("Login", "Home"));
+            }
         }
     }
 }

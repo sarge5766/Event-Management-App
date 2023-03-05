@@ -4,17 +4,41 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
-    <link rel="stylesheet" href="~/Content/Site.css" /> 
+    <link rel="stylesheet" href="~/Content/Site.css" />
 </head>
 <body>
-    <header>
-        <nav>
+    <header class="box-shadow">
+        <div class="section logo">
+            <a href="/Dashboard/Index"><span class="white">event</span><span class="orange">management</span><span class="white">system</span></a>
+        </div>
+
+        <div class="section">
             <ul>
-                <li><a href="/Dashboard/Index">Dashboard</a></li>
-                <li><a href="/Contacts/Index">Contacts</a></li>
-                <li><a href="/Events/Index">Events</a></li>
+                <li>
+                    @if (ViewBag.Section == "dashboard") {
+                        <a class="active" href="/Dashboard/Index">Dashboard</a>
+                    } else {
+                        <a href="/Dashboard/Index">Dashboard</a>
+                    }
+                </li>
+
+                <li>
+                    @if (ViewBag.Section == "contacts") {
+                        <a class="active" href="/Contacts/Index">Contacts</a>
+                    } else {
+                        <a href="/Contacts/Index">Contacts</a>
+                    }
+                </li>
+
+                <li>
+                    @if (ViewBag.Section == "events") {
+                        <a class="active" href="/Events/Index">Events</a>
+                    } else {
+                        <a href="/Events/Index">Events</a>
+                    }
+                </li>
             </ul>
-        </nav>
+        </div>
     </header>
 
     <main>
@@ -22,8 +46,7 @@
     </main>
 
     <footer>
-
-    </footer>   
+    </footer>
 
 </body>
 </html>

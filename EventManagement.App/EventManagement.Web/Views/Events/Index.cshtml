@@ -2,17 +2,34 @@
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    int counter = 0;
 }
 
 <h2>Events</h2>
 <a href="/Events/Add">Add Event</a>
 
-<table>
-    @foreach (var e in Model) {
+<div class="container">
+    <table>
         <tr>
-            <td>@e.Name</td>
-            <td>@e.EventDate.ToString("MM/dd/yyyy")</td>
-            <td><a href="/Events/UpdateEvent?id=@e.EventId">Edit</a> | <a href="/Events/Delete?id=@e.EventId"  onclick="return confirm('Are you sure you want to delete this?')">Delete</a></td>
+            <th>Event Name</th>
+            <th>Event Date</th>
+            <th>Action</th>
         </tr>
-           }
-</table>
+        @foreach (var e in Model) {
+            if (counter % 2 == 0) {
+                <tr class="odd">
+                    <td>@e.Name</td>
+                    <td>@e.EventDate.ToString("MM/dd/yyyy")</td>
+                    <td><a class="link" href="/Events/UpdateEvent?id=@e.EventId">Edit</a> | <a class="link" href="/Events/Delete?id=@e.EventId" onclick="return confirm('Are you sure you want to delete this?')">Delete</a></td>
+                </tr>
+            } else {
+                <tr>
+                    <td>@e.Name</td>
+                    <td>@e.EventDate.ToString("MM/dd/yyyy")</td>
+                    <td><a class="link" href="/Events/UpdateEvent?id=@e.EventId">Edit</a> | <a class="link" href="/Events/Delete?id=@e.EventId" onclick="return confirm('Are you sure you want to delete this?')">Delete</a></td>
+                </tr>
+            }
+            counter++;
+        }
+    </table>
+</div>

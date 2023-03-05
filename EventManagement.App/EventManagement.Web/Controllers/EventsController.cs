@@ -6,9 +6,10 @@ using System.Web.Mvc;
 
 namespace EventManagement.Web.Controllers {
     public class EventsController : BaseController {
-       // private string _baseUrl = @"https://localhost:44331/";
+        public EventsController() {
+            ViewBag.Section = "events";
+        }
 
-        // GET: Events
         public ActionResult Index() {
             return View(GetEvents());
         }
@@ -80,15 +81,12 @@ namespace EventManagement.Web.Controllers {
 
         private List<Event> GetEvents() {
             var serviceUrl = @"api/Events/GetAll";
-
             var client = new RestClient(_baseUrl);
             var request = new RestRequest(serviceUrl, Method.Get);
             request.RequestFormat = DataFormat.Json;
-
             var response = client.Execute(request);
-            var content = JsonConvert.DeserializeObject<List<Event>>(response.Content);
 
-            return content;
+            return JsonConvert.DeserializeObject<List<Event>>(response.Content);
         }
     }
 }

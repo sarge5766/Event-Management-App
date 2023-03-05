@@ -1,24 +1,21 @@
-﻿@model  EventManagement.Domain.Event 
+﻿@model  EventManagement.Domain.Event
 @{
     ViewBag.Title = "Add";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Add Event</h2>
-
-@using (Html.BeginForm("AddEvent", "Events", FormMethod.Post)) {
-<table>
-    <tr>
-        <td>@Html.TextBoxFor(e => e.Name, new { placeholder = "Enter Event Name" })</td>
-    </tr>
-    <tr>
-        <td>@Html.TextBoxFor(e => e.EventDate, new { type = "date" })
-        
-        
-    </tr>
-    <tr>
-        <td><input type="submit" value="Save" /></td>
-    </tr>
-</table>
-
-}
+<div class="container">
+    @using (Html.BeginForm("AddEvent", "Events", FormMethod.Post)) {
+        <div class="event-form">
+            <div class="title">Add Event</div>
+            <div class="text-box-wrapper">
+                @Html.TextBoxFor(e => e.Name, new { placeholder = "Enter Event Name" })
+                @Html.TextBoxFor(e => e.EventDate, new { type = "date" })
+            </div>
+            <div class="btn-wrapper">
+                <input type="submit" value="Save" />
+                @Html.ActionLink("Cancel", "Index", new { controller = "Events" }, new { @class = "btn" })
+            </div>
+        </div>
+    }
+</div>

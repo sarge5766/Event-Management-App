@@ -1,6 +1,19 @@
 ﻿@import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap');
 
+:root {
+    --link-color: #090e1e;
+    --link-hover-color: orange;
+    --header-background-color: #082b41;
+    --row-highlight-color: #265d84;
+    --row-highlight-hover-color: #c0d1d8;
+    --card-border: orange;
+    --button-background-color: orange;
+    --button-alt-background-color: #082b41;
+}
+
+
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -17,9 +30,31 @@ body {
 }
 
 header {
-    background-color: #082b41;
+    background-color: var(--header-background-color);
     height: 65px;
-    padding: 1.3em 2em;
+    padding: .75em 0;
+}
+
+.logo {
+    font-family: 'Poppins';
+}
+
+.logo a {
+    color: white;
+    font-size: 1.5em;
+}
+
+.logo a:hover {
+    color: white;
+}
+
+.logo > span {
+    display: inline-block;
+    font-size: 1.5em;
+}
+
+.orange {
+    color: orange;
 }
 
 header > ul {
@@ -29,31 +64,272 @@ header > ul {
 header ul li {
     display: inline-block;
     padding-right: 1em;
+    padding-top: .75em;
 }
 
 a {
-    color: #32d59d;
+    color: var(--link-color);
     text-decoration: none;
 }
 
-    a:hover {
-        color: #5fa075;
-    }
+a:hover {
+    color: var(--link-hover-color);
+    font-weight: bold;
+}
+
+.active {
+    color: var(--link-hover-color);
+    font-weight: bold;
+}
+
+.active:hover {
+    color: var(--link-color);
+}
 
 main {
-    padding: 3em;
+   padding: 3em;
+}
+
+.container {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    padding: 0 3em;
+}
+
+.contact-form, .event-form {
+    border: 1px solid var(--card-border);
+    border-top: 3em solid var(--card-border);
+    padding: 1em 1em 1em 1em;
+    position: relative;
+}
+
+.event-form {
+    width: max-content;
+}
+
+.contact-form {
+    width: 500px;
+}
+
+.title {
+    font-size: 1.5em;
+    font-weight: bold;
+    padding: 1em 0;
+    position: absolute;
+    top: -2.5em;
+    text-transform: uppercase;
+}
+
+.contact-form input[type="text"],
+.event-form input[type="text"], 
+.event-form input[type="date"], 
+input[type="password"],
+select  {
+    height: 2em;
+    margin-bottom:1em;
+    padding-left: .5em;
+    width: 100%;
+}
+
+.contact-form input[type="text"], select {
+    width: 99%;
+}
+
+.contact-form input[type="text"]:first-child, .contact-form input[type="text"]:nth-child(2), .contact-form input[type="text"]:nth-child(6), .contact-form input[type="text"]:nth-child(7), .contact-form input[type="text"]:nth-child(8), .contact-form input[type="text"]:nth-child(9) {
+    width: 49%;
+}
+
+input[type="submit"] {
+    background-color: var(--button-background-color);
+    border: none;
+    cursor: pointer;
+    outline: none;
+    padding: .5em 1em;
+    text-transform: uppercase;
+}
+
+input[type="submit"]:hover {
+    background-color: var(--button-alt-background-color);
+    color: #fff;
+
+}
+
+.btn {
+    background-color: var(--button-alt-background-color);
+    color: orange;
+    font-size: .82em;
+    padding: .5em 1em;
+}
+
+.btn:hover {
+    color: var(--button-alt-background-color);
+    background-color: var(--button-background-color);
 }
 
 table {
     border-spacing: 0;
     border-collapse: separate;
+    border: 1px solid var(--card-border);
     margin-top: 1em;
+}
+
+table tr th {
+    background-color: var(--card-border);
+    padding: 1em;
 }
 
 table tr td {
     padding: 1em;
 }
 
-.odd {
-    background-color: grey;
+table tr:hover, table tr.odd:hover {
+    background-color: var(--row-highlight-hover-color);
+    color: #000;
 }
+
+.odd {
+    background-color: var(--row-highlight-color);
+}
+
+header {
+    display: flex;
+    justify-content: space-around;
+    flex-flow: row wrap;
+}
+
+.section {
+    flex-grow: 1;
+}
+
+    .section.logo {
+        margin-left: 2.5em;
+    }
+
+.logo {
+    font-size: 1.2em;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+ul {
+    list-style-type: none;
+    display: flex;
+    flex-flow: row nowrap;
+    width: 500px;
+    margin: 0;
+    padding: 0;
+}
+
+    ul li {
+        flex-grow: 1;
+        text-align: center;
+        width: 70px;
+    }
+
+        ul li a {
+            color: var(--anchor-color);
+            font-size: .9rem;
+            text-transform: uppercase;
+        }
+
+header div:nth-child(1) {
+    flex-grow: 8;
+}
+
+    header div:nth-child(1) img {
+        margin-left: 25px;
+    }
+
+.box-shadow {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+@media all and (max-width: 800px) {
+    header {
+        justify-content: space-around;
+    }
+
+    .container {
+        padding: 50px;
+    }
+}
+
+@media only screen and (max-width:542px) {
+    header div:nth-child(1) {
+        margin: 0 auto;
+        display: block;
+        padding-bottom: 0;
+    }
+
+    header {
+        flex-direction: column;
+    }
+
+    .section {
+        flex-grow: 1;
+        text-align: center;
+    }
+
+        .section.logo {
+            margin: 0;
+        }
+
+    ul {
+        background-color: #232323;
+        width: 100%;
+        margin-top: 15px;
+    }
+
+        ul li {
+            width: 50%;
+            padding: 5px;
+        }
+}
+
+.container.dashboard {
+    display: grid;
+    gap: 1em;
+    grid-template-columns: repeat(2, 20em);
+}
+
+.container.dashboard > h2 {
+    grid-column-start: 1;
+    grid-column-end: 3;
+    text-transform: uppercase;
+}
+
+.card {
+    border: 1px solid var(--card-border);
+    border-top: 3em solid var(--card-border);
+    padding: 1em 1em;
+    position: relative;
+}
+
+.card > div.title {
+    font-size: 1.3em;
+    left: 1em;
+    position: absolute;
+    text-transform: uppercase;
+    top: -2.7em;
+}
+
+.card > div.links, main a, td a {
+    font-size: .8em;
+    font-weight: bold;
+    padding-top: 1em;
+    text-transform: uppercase;
+}
+
+main h2 {
+    padding-bottom: 1em;
+    text-transform: uppercase;
+}
+
+.card > div.links > a:nth-child(1), td a:nth-child(1) {
+    padding-right: .5em;
+}
+
+    .card > div.links > a:nth-child(2), td a:nth-child(2) {
+        padding-left: .5em;
+    }

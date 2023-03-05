@@ -6,7 +6,10 @@ using System.Web.Mvc;
 
 namespace EventManagement.Web.Controllers {
     public class ContactsController : BaseController {
-        // GET: Contacts
+        public ContactsController() {
+            ViewBag.Section = "contacts";
+        }
+
         public ActionResult Index() {
             return View(GetContacts());
         }
@@ -85,6 +88,7 @@ namespace EventManagement.Web.Controllers {
             var request = new RestRequest(serviceUrl, Method.Get);
             request.RequestFormat = DataFormat.Json;
             var response = client.Execute(request);
+
             return JsonConvert.DeserializeObject<Contact>(response.Content);
         }
 

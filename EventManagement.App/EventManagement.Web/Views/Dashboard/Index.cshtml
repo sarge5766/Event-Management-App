@@ -1,12 +1,29 @@
-﻿
+﻿@model dynamic
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Dashboard</h2>
+<div class="container dashboard">
+    <h2>Dashboard</h2>
 
-// Show # Contacts
-// Show # Events
-// Show # Upcoming Events
+    <div class="card">
+        <div class="title">Contacts</div>
+        <div class="content">
+            There are @Model.Contacts.Count Contacts available.
+        </div>
+        <div class="links">
+            <a href="/Contacts/Index">View Contacts</a> | <a href="/Contacts/Add">Add Contact</a>
+        </div>
+    </div>
 
+    <div class="card">
+        <div class="title">Events</div>
+        <div class="content">
+            There are @Model.Events.Count Events.
+        </div>
+        <div class="links">
+            <a href="/Events/Index">View Events</a> | <a href="/Events/Add">Add Event</a>
+        </div>
+    </div>
+</div>
