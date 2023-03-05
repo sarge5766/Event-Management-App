@@ -97,7 +97,7 @@ main {
     padding: 0 3em;
 }
 
-.contact-form, .event-form {
+.contact-form, .event-form, .login-form {
     border: 1px solid var(--card-border);
     border-top: 3em solid var(--card-border);
     padding: 1em 1em 1em 1em;
@@ -112,6 +112,11 @@ main {
     width: 500px;
 }
 
+.login-form {
+    width: 300px;
+}
+
+
 .title {
     font-size: 1.5em;
     font-weight: bold;
@@ -125,6 +130,7 @@ main {
 .event-form input[type="text"], 
 .event-form input[type="date"], 
 input[type="password"],
+.login-form input[type="text"],
 select  {
     height: 2em;
     margin-bottom:1em;
@@ -333,3 +339,24 @@ main h2 {
     .card > div.links > a:nth-child(2), td a:nth-child(2) {
         padding-left: .5em;
     }
+
+.red {
+    color: orange;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.display-inline-block {
+    display: inline-block;
+}
+
+.pb-half-em {
+    padding-bottom: .5em;
+}
+
+.text-transform-uppercase {
+    text-transform: uppercase;
+}
+

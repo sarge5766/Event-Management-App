@@ -1,15 +1,7 @@
 ﻿using EventManagement.Domain;
-using Microsoft.Ajax.Utilities;
 using Newtonsoft.Json;
 using RestSharp;
-using System;
-using System.Collections.Generic;
-using System.EnterpriseServices;
-using System.EnterpriseServices.CompensatingResourceManager;
-using System.Net.Http;
-using System.Threading.Tasks;
 using System.Web.Mvc;
-using System.Web.Script.Serialization;
 
 namespace EventManagement.Web.Controllers {
     public class HomeController : Controller {
