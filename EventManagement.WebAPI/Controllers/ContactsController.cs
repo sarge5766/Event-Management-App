@@ -1,6 +1,8 @@
 ﻿using EventManagement.Domain;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Net;
@@ -41,7 +43,7 @@ namespace EventManagement.WebAPI.Controllers {
             return Ok();
         }
 
-        [HttpDelete]
+        [HttpPost]
         [Route("api/Contacts/Delete/{id}")]
         public IHttpActionResult Delete(int id) {
             using (conn) {
@@ -56,39 +58,6 @@ namespace EventManagement.WebAPI.Controllers {
             }
 
             return Ok();
-        }
-
-        [HttpGet]
-        [Route("api/Contacts/GetById/{id}")]
-        public IHttpActionResult GetById(int id) {
-            Contact contact = new Contact();
-
-            using (conn) {
-                conn.Open();
-                using (SqlCommand command = conn.CreateCommand()) {
-                    command.CommandText = "[dbo].[Contacts_GetById]";
-                    command.CommandType = System.Data.CommandType.StoredProcedure;
-                    command.Parameters.AddWithValue("@ContactId", id);
-
-                    using (SqlDataReader reader = command.ExecuteReader()) {
-                        while (reader.Read()) {
-                            contact.ContactId = Convert.ToInt32(reader["ContactId"]);
-                            contact.FirstName = reader["FirstName"].ToString();
-                            contact.LastName = reader["LastName"].ToString();
-                            contact.MobileNumber = reader["MobileNumber"].ToString();
-                            contact.Email = reader["Email"].ToString();
-                            contact.Address = reader["Address"].ToString();
-                            contact.City = reader["City"].ToString();
-                            contact.State = reader["State"].ToString();
-                            contact.Zipcode = reader["Zipcode"].ToString();
-                            contact.BloodType = (BloodType)Enum.Parse(typeof(BloodType), reader["BloodType"].ToString());
-                            contact.ReferredBy = Convert.ToInt32(reader["ReferredBy"]);
-                        }
-                    }
-                }
-            }
-
-            return Ok(contact);
         }
 
         [HttpGet]
@@ -124,8 +93,18 @@ namespace EventManagement.WebAPI.Controllers {
 
             return Ok(contacts);
         }
+      
+        [HttpGet]
+        [Route("api/Contacts/GetById/{id}")]
+        public IHttpActionResult GetById(int id) {
+            var contact = GetFullContactById(id);
+            conn.Close();
+            contact.ContactEvents = GetContactEvents(id);
 
-        [HttpPut]
+            return Ok(contact);
+        }
+
+        [HttpPost]
         [Route("api/Contacts/Update")]
         public IHttpActionResult Put(Contact contact) {
             using (conn) {
@@ -150,6 +129,84 @@ namespace EventManagement.WebAPI.Controllers {
             }
 
             return Ok();
+        }
+
+        [HttpPost]
+        [Route("api/Contacts/AddContactEvent/{contactId}/{eventId}")]
+        public IHttpActionResult AddContactEvent(int contactId, int eventId) {
+            using (conn) {
+                conn.Open();
+                using (SqlCommand command = conn.CreateCommand()) {
+                    command.CommandText = "[dbo].[EventMapper_Insert]";
+                    command.CommandType = System.Data.CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@ContactId", contactId);
+                    command.Parameters.AddWithValue("@EventId", eventId);
+
+                    command.ExecuteNonQuery();
+                }
+            }
+
+            return Ok();
+        }
+
+        private List<Event> GetContactEvents(int contactId) {
+            List<Event> events = new List<Event>();
+            conn = DBHelper.Conn();
+
+            using (conn) {
+                conn.Open();
+                using (SqlCommand command = conn.CreateCommand()) {
+                    command.CommandText = "[dbo].[Contacts_GetContactEvents]";
+                    command.CommandType = System.Data.CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@ContactId", contactId);
+
+                    using (SqlDataReader reader = command.ExecuteReader()) {
+                        while (reader.Read()) {
+                            events.Add(new Event() {
+                                EventId = Convert.ToInt16(reader["EventId"]),
+                                Name = reader["Name"].ToString(),
+                                EventDate = Convert.ToDateTime(reader["EventDate"]),
+                            });
+                        }
+                    }
+                }
+            }
+
+            return events;
+        }
+
+        private Contact GetFullContactById(int id) {
+            Contact contact = new Contact();
+            conn = DBHelper.Conn();
+
+            using (conn) {
+                conn.Open();
+                using (SqlCommand command = conn.CreateCommand()) {
+                    command.CommandText = "[dbo].[Contacts_GetById]";
+                    command.CommandType = System.Data.CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@ContactId", id);
+
+                    using (SqlDataReader reader = command.ExecuteReader()) {
+                        while (reader.Read()) {
+                            contact = (new Contact() {
+                                ContactId = Convert.ToInt32(reader["ContactId"]),
+                                FirstName = reader["FirstName"].ToString(),
+                                LastName = reader["LastName"].ToString(),
+                                MobileNumber = reader["MobileNumber"].ToString(),
+                                Email = reader["Email"].ToString(),
+                                Address = reader["Address"].ToString(),
+                                City = reader["City"].ToString(),
+                                State = reader["State"].ToString(),
+                                Zipcode = reader["Zipcode"].ToString(),
+                                BloodType = (BloodType)Enum.Parse(typeof(BloodType), reader["BloodType"].ToString()),
+                                ReferredBy = Convert.ToInt32(reader["ReferredBy"])
+                            });
+                        }
+                    }
+                }
+            }
+
+            return contact;
         }
     }
 }

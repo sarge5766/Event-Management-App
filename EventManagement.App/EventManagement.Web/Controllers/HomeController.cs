@@ -1,6 +1,7 @@
 ﻿using EventManagement.Domain;
 using Newtonsoft.Json;
 using RestSharp;
+using System.Configuration;
 using System.Web.Mvc;
 
 namespace EventManagement.Web.Controllers {
@@ -23,7 +24,7 @@ namespace EventManagement.Web.Controllers {
                 return View();
             }
 
-            var baseUrl = @"https://localhost:44331/";
+            var baseUrl = ConfigurationManager.AppSettings["BaseUrl"];
             var serviceUrl = @"api/Users/Login";
 
             var client = new RestClient(baseUrl);

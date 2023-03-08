@@ -1,4 +1,6 @@
-﻿namespace EventManagement.Domain {
+﻿using System.Collections.Generic;
+
+namespace EventManagement.Domain {
     public class Contact {
         public string Address { get; set; }
         public BloodType BloodType { get; set; }
@@ -11,5 +13,6 @@
         public int ReferredBy { get; set; }
         public string State { get; set; }
         public string Zipcode { get; set; }
+        public List<Event> ContactEvents { get; set; }
     }
 }

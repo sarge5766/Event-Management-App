@@ -31,7 +31,7 @@ namespace EventManagement.WebAPI.Controllers {
             return Ok();
         }
 
-        [HttpDelete]
+        [HttpPost]
         [Route("api/Events/Delete/{id}")]
         public IHttpActionResult Delete(int id) {
             using (conn) {
@@ -98,7 +98,7 @@ namespace EventManagement.WebAPI.Controllers {
             return Ok(events);
         }
 
-        [HttpPut]
+        [HttpPost]
         [Route("api/Events/Update")]
         public IHttpActionResult Put(Event e) {
             using (conn) {

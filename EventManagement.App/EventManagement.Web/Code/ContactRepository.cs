@@ -1,4 +1,5 @@
 ﻿using EventManagement.Domain;
+using Newtonsoft.Json;
 using RestSharp;
 
 namespace EventManagement.Web {
@@ -23,11 +24,11 @@ namespace EventManagement.Web {
 
             client.Execute(request);
         }
-      
+       
         public override void Update(Contact contact) {
             var serviceUrl = @"api/Contacts/Update";
             var client = new RestClient(_baseUrl);
-            var request = new RestRequest(serviceUrl, Method.Put);
+            var request = new RestRequest(serviceUrl, Method.Post);
             request.RequestFormat = DataFormat.Json;
             request.AddBody(new Contact {
                 ContactId = contact.ContactId,
@@ -43,6 +44,15 @@ namespace EventManagement.Web {
                 BloodType = contact.BloodType
             });
 
+            client.Execute(request);
+        }
+
+        public void AddEventToContact(int contactId, int eventId) {
+            var serviceUrl = $@"api/Contacts/AddContactEvent/{contactId}/{eventId}";
+            var client = new RestClient(_baseUrl);
+            var request = new RestRequest(serviceUrl, Method.Post);
+            request.RequestFormat = DataFormat.Json;
+           
             client.Execute(request);
         }
     }

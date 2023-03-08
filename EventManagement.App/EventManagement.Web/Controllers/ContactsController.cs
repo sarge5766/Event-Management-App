@@ -1,18 +1,17 @@
 ﻿using EventManagement.Domain;
+using System;
 using System.Dynamic;
 using System.Web.Mvc;
 
 namespace EventManagement.Web.Controllers {
     public class ContactsController : BaseController {
-        readonly ContactRepository contactsRepository;
+        ContactRepository contactsRepository;
         readonly EventRepository eventsRepository;
-        readonly dynamic objects;
 
         public ContactsController() {
             ViewBag.Section = "contacts";
             contactsRepository = new ContactRepository();
             eventsRepository = new EventRepository();
-            objects = new ExpandoObject();
         }
 
         public ActionResult Index() {
@@ -27,6 +26,15 @@ namespace EventManagement.Web.Controllers {
             contactsRepository.Add(contact);
 
             return RedirectToAction("Index", "Contacts");
+        }
+
+        public ActionResult AddEvent(int contactId) {
+            Contact contact = contactsRepository.GetById(contactId, $@"api/Contacts/GetById/{contactId}");
+            ViewBag.ContactId = contactId;
+            ViewBag.FirstName = contact.FirstName;
+            ViewBag.LastName = contact.LastName;
+
+            return View(eventsRepository.GetAll(@"api/Events/GetAll"));
         }
 
         public ActionResult Delete(int id) {
@@ -46,10 +54,19 @@ namespace EventManagement.Web.Controllers {
         }
 
         public ActionResult ViewDetails(int id) {
-            objects.Contact = contactsRepository.GetById(id, $@"api/Contacts/GetById/{id}");
-            objects.Events = eventsRepository.GetAll(@"api/Events/GetAll");
+            Contact contact = contactsRepository.GetById(id, $@"api/Contacts/GetById/{id}");
 
-            return View(objects);
+            return View(contact);
         }
+
+        public ActionResult AddEventToContact(Event @event) {
+            var contactId = Request["contactId"];
+            var eventId = @event.EventId;
+
+            contactsRepository.AddEventToContact(Convert.ToInt32(Request["contactId"]) , @event.EventId);
+
+            return RedirectToAction("Index");
+        }
+
     }
 }

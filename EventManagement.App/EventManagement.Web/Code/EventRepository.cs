@@ -21,7 +21,7 @@ namespace EventManagement.Web {
         public override void Update(Event @event) {
             var serviceUrl = @"api/Events/Update";
             var client = new RestClient(_baseUrl);
-            var request = new RestRequest(serviceUrl, Method.Put);
+            var request = new RestRequest(serviceUrl, Method.Post);
             request.RequestFormat = DataFormat.Json;
             request.AddBody(new Event {
                EventId = @event.EventId,

@@ -1,0 +1,23 @@
+﻿@model IEnumerable<EventManagement.Domain.Event>
+@{
+    ViewBag.Title = "AddEvent";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+   
+
+    <div class="card">
+        <h2>Add Event</h2>
+
+        @ViewBag.FirstName @ViewBag.LastName
+
+        @using (Html.BeginForm("AddEventToContact", "Contacts", FormMethod.Post)) {
+
+            @Html.Hidden("ContactId", (string)ViewBag.ContactId.ToString())
+            @Html.DropDownList("EventId", new SelectList(Model, "EventId", "Name"))
+
+            <input type="submit" value="Add" />
+        }
+    </div>
+</div>

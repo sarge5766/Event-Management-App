@@ -1,4 +1,5 @@
-﻿@model dynamic
+﻿@using System.Web.Mvc.Html;
+@model EventManagement.Domain.Contact
 @{
     ViewBag.Title = "ViewDetails";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -7,20 +8,32 @@
 <div class="container">
     <div class="card contact-details">
         <div class="title">Contact Details</div>
-        @Model.Contact.FirstName @Model.Contact.LastName<br />
-        @Model.Contact.MobileNumber<br />
-        @Model.Contact.Email<br />  
-        @Model.Contact.Address<br />
-        @Model.Contact.City, @Model.Contact.State @Model.Contact.Zipcode<br />
-        BloodType: @Model.Contact.BloodType
+        @Model.FirstName @Model.LastName<br />
+        @Model.MobileNumber<br />
+        @Model.Email<br />
+        @Model.Address<br />
+        @Model.City, @Model.State @Model.Zipcode<br />
+        BloodType: @Model.BloodType
     </div>
-    
+
     <div class="card events-signed-up-for">
-        <div class="title">Events Signed Up For</div>
-        sign up for event<br />
-        @foreach (var item in Model.Events) {
-            @item.Name<br />
+        <div class="title">Events</div>
+        @foreach (var item in Model.ContactEvents) {
+            <span class="event-title">@item.Name</span> 
+            <span class="event-date">@item.EventDate.ToString("MM/dd/yyyy")</span>
+            <span class="remove-event"><a href="#">Remove Event</a></span>
+        <br />
         }
+
+
+        @*LETS SEE ABOUT CREATING A PARTIAL VIEW FOR THIS
+        THIS SHOULD BE A DROPDOWNLIST WITH ALL EVENTS*@
+        @*@using (Html.BeginForm("AddEventToContact", "Contacts", FormMethod.Post)) {
+            @Html.HiddenFor(c => c.ContactId)
+            @Html.DropDownListFor(e => e.contactEvents, new SelectList(Model.contactEvents, "EventId", "Name", Model.contactEvents))
+
+            <input type="submit" value="Add" />
+        }*@
     </div>
 </div>
 

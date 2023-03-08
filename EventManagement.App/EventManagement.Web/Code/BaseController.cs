@@ -6,6 +6,6 @@ using System.Web.Mvc;
 
 namespace EventManagement.Web {
     public class BaseController : Controller {
-        public string _baseUrl = @"https://localhost:44331/";
+        public string _baseUrl = @"http://api.thedevplace.com/";
     }
 }
