@@ -25,6 +25,10 @@ namespace EventManagement.Web {
             client.Execute(request);
         }
        
+        public void RemoveEventFromContact(int contact, int eventId) {
+            // TODO
+        }
+
         public override void Update(Contact contact) {
             var serviceUrl = @"api/Contacts/Update";
             var client = new RestClient(_baseUrl);

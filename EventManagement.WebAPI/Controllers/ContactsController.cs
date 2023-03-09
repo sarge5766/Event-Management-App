@@ -105,6 +105,25 @@ namespace EventManagement.WebAPI.Controllers {
         }
 
         [HttpPost]
+        [Route("api/Contacts/RemoveEventFromContact/{contactId}/{eventId}")]
+        public IHttpActionResult RemoveEventFromContact(int contactId, int eventId) {
+            using (conn) {
+                conn.Open();
+                using (SqlCommand command = conn.CreateCommand()) {
+                    command.CommandText = "[dbo].[Contacts_RemoveEventFromContact]";
+                    command.CommandType = System.Data.CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@ContactId", contactId);
+                    command.Parameters.AddWithValue("@EventId", eventId);
+
+                    command.ExecuteNonQuery();
+                }
+            }
+
+            return Ok();
+        }
+
+
+        [HttpPost]
         [Route("api/Contacts/Update")]
         public IHttpActionResult Put(Contact contact) {
             using (conn) {

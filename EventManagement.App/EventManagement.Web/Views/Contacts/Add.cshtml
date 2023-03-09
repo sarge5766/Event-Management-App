@@ -38,7 +38,10 @@
                 @Html.TextBoxFor(c => c.ReferredBy, new { placeholder = "Enter Reference" })
 
 
-                @Html.DropDownList("BloodType", EnumHelper.GetSelectList(typeof(BloodType)), "Select Blood Type",            new { @class = "form-control" })
+                @Html.DropDownList("BloodType", 
+                    EnumHelper.GetSelectList(typeof(BloodType)), 
+                    "Select Blood Type",            
+                    new { @class = "form-control" })
 
             </div>
             <div class="btn-wrapper">

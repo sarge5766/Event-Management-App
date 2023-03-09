@@ -43,6 +43,10 @@ namespace EventManagement.Web.Controllers {
             return RedirectToAction("Index", "Contacts");
         }
 
+        public ActionResult RemoveEvent(int eventId) {
+            return View();
+        }
+
         public ActionResult Update(Contact contact) {
             contactsRepository.Update(contact);
 

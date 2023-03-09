@@ -18,22 +18,13 @@
 
     <div class="card events-signed-up-for">
         <div class="title">Events</div>
+
         @foreach (var item in Model.ContactEvents) {
-            <span class="event-title">@item.Name</span> 
+            <span class="event-title">@item.Name</span>
             <span class="event-date">@item.EventDate.ToString("MM/dd/yyyy")</span>
-            <span class="remove-event"><a href="#">Remove Event</a></span>
-        <br />
+            <span class="remove-event"><a href="/Contact/RemoveEvent?eventid=@item.EventId">Remove Event</a></span>
+            <br />
         }
-
-
-        @*LETS SEE ABOUT CREATING A PARTIAL VIEW FOR THIS
-        THIS SHOULD BE A DROPDOWNLIST WITH ALL EVENTS*@
-        @*@using (Html.BeginForm("AddEventToContact", "Contacts", FormMethod.Post)) {
-            @Html.HiddenFor(c => c.ContactId)
-            @Html.DropDownListFor(e => e.contactEvents, new SelectList(Model.contactEvents, "EventId", "Name", Model.contactEvents))
-
-            <input type="submit" value="Add" />
-        }*@
     </div>
 </div>
 
